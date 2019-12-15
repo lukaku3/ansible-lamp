@@ -1,0 +1,7 @@
+---
+#  tasks file for php
+- shell: cp -p /etc/php-fpm.d/www.conf{,.`date +%Y%m%d_%s`}
+- shell: sed -i 's/^listen\ =\ 127\.0\.0\.1\:9000/listen\ =\ \/var\/run\/php-fpm\/php-fpm\.sock/g' /etc/php-fpm.d/www.conf
+- shell: systemctl enable php-fpm
+- shell: systemctl restart php-fpm
+

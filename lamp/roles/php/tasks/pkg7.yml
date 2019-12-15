@@ -1,0 +1,43 @@
+---
+# tasks file for php
+- name: Remove a list of packages
+  yum:
+    name:
+      - php
+      - httpd
+    state: absent
+- shell: curl -O -L http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+- shell: yum localinstall -y remi-release-7.rpm
+- shell: rm -f remi-release-7.rpm
+
+- name: Install a list of packages
+  yum:
+    name:
+      - libmcrypt
+      - libmcrypt-devel
+      - php
+      - php-mcrypt
+      - php-fpm
+      - composer
+      - php-pecl-xdebug
+      - php-devel
+      - php-mbstring
+      - php-pdo
+      - php-gd
+      - libffi-devel
+      - php-mcrypt
+      - php-zlib
+      - php-zip
+      - php-mysql
+      - php-xml
+      - php-curl
+      - vim
+      - tree
+      - net-tools
+      - bind-utils
+    state: present
+    enablerepo: "epel,remi-php72"
+- shell: setenforce 0
+- shell: cp -p /etc/php.ini{,.`date +%Y%m%d_%s`}
+- shell: sed -i "s/\;date\.timezone\ =$/date\.timezone\ =\ Asia\/Tokyo/" /etc/php.ini
+

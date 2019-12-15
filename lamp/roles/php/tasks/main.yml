@@ -1,2 +1,3 @@
 ---
-# tasks file for php
+- include: roles/php/tasks/pkg7.yml
+- include: roles/php/tasks/php-fpm.yml

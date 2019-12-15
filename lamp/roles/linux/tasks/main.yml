@@ -2,3 +2,7 @@
 # tasks file for linux
 - shell: cp -p /etc/selinux/config{,.`date +%Y%m%d_%s`}
 - shell: sed -i 's/^SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
+- name: Add epel-release repo
+  yum:
+    name: epel-release
+    state: present
