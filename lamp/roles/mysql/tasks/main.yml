@@ -1,2 +1,4 @@
 ---
 # tasks file for mysql
+- include: roles/mysql/tasks/mysql5x.yml
+

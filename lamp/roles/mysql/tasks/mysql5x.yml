@@ -1,0 +1,27 @@
+---
+# tasks file for mysql
+- name: Remove list of packages
+  yum:
+    name:
+      - mariadb-libs
+      - mariadb
+      - mariadb-*
+    state: absent
+- shell: rm -rf /var/lib/mysql
+- shell: curl -LO http://dev.mysql.com/get/mysql57-community-release-el7-7.noarch.rpm
+- shell: yum localinstall -y mysql57-community-release-el7-7.noarch.rpm
+- name: Install list of packages
+  yum:
+    name:
+      - yum-utils
+    state: present
+- shell: yum-config-manager --disable mysql56-community
+- shell: yum-config-manager --enable  mysql57-community
+- name: Install list of packages
+  yum:
+    name:
+      - mysql-community-server
+    state: present
+- shell: systemctl enable mysqld
+- shell: systemctl start mysqld
+
