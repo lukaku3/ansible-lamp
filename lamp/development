@@ -1,0 +1,7 @@
+---
+
+- hosts: linux
+  sudo: yes
+  sudo_user: root
+  roles:
+    - linux
