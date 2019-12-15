@@ -1,7 +1,2 @@
----
-
-- hosts: linux
-  sudo: yes
-  sudo_user: root
-  roles:
-    - linux
+[linux]
+127.0.0.1
