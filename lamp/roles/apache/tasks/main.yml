@@ -1,6 +1,33 @@
 ---
 # tasks file for apache
-- name: Install nginx
+- name: Remove nginx
   yum:
     name: nginx
+    state: absent
+- name: Install apache
+  yum:
+    name: httpd
     state: present
+- shell:
+    cmd: |
+        cat > /etc/httpd/conf.d/default.conf << HTTPD
+        <VirtualHost *:80>
+          ServerName laradock
+          DocumentRoot /var/www/amelia/public/
+          Options Indexes FollowSymLinks
+        
+          <Directory "/var/www/amelia/">
+            AllowOverride All
+            <IfVersion < 2.4>
+              Allow from all
+            </IfVersion>
+            <IfVersion >= 2.4>
+              Require all granted
+            </IfVersion>
+          </Directory>
+        
+        </VirtualHost>
+        HTTPD
+- shell: echo "192.168.33.10 laradoc" >> /etc/hosts
+- command: systemctl enable httpd
+- command: systemctl restart httpd
