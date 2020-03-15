@@ -1,0 +1,19 @@
+---
+# tasks file for docker-ce
+#
+- name: UnInstall apache
+  yum:
+    name:
+     - httpd
+     - docker-ce
+    state: absent
+- shell: yum-config-manager  --add-repo  https://download.docker.com/linux/centos/docker-ce.repo
+- name: Install docker-ce
+  yum:
+    name:
+     - docker-ce
+     - docker-ce-cli
+     - containerd.io
+    state: present
+- shell: usermod -aG docker lazyarea
+- shell: systemctl start docker
