@@ -3,7 +3,8 @@
 #
 - name: UnInstall apache
   yum:
-    name: httpd
+    name:
+     - httpd
     state: absent
 - shell: 
     cmd: |
@@ -36,7 +37,7 @@
             #charset koi8-r;
             access_log  /var/log/nginx/xxxxx-access.log  main;
             error_log   /var/log/nginx/xxxxx-error.log;
-            root   /var/www/xxxxx/webroot;
+            root   /var/www/xxxxx;
             index  index.php index.html index.htm;
             location / {
                 try_files \$uri \$uri?\$args \$uri/ /index.php?\$uri&\$args /index.php?\$args;

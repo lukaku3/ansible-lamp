@@ -1,0 +1,12 @@
+---
+# tasks file for jenkins
+#
+- name: Install jenkins
+  yum:
+    name:
+     - https://pkg.jenkins.io/redhat-stable/jenkins-2.204.5-1.1.noarch.rpm
+     - java-latest-openjdk
+     - java-latest-openjdk-devel
+    state: present
+- shell: docker run -p 443:8080 -p 50000:50000 -d jenkins/jenkins:lts
+#- shell: docker run -p 18080:8080 -p 50000:50000 -d jenkins/jenkins:lts
