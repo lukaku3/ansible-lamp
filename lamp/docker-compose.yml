@@ -1,0 +1,6 @@
+---
+
+- hosts: docker-ce
+  become: yes
+  roles:
+     - docker-compose
