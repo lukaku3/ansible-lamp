@@ -1,9 +1,6 @@
 ---
 
-- hosts: linux
+- hosts: gcpweb
   become: yes
   roles:
-     - linux
-     - php
-     - mysql
      - nginx

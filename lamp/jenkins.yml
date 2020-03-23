@@ -1,6 +1,10 @@
 ---
-
-- hosts: jenkins
+- hosts: jenkins-gitbucket
   become: yes
   roles:
      - jenkins
+- hosts: jenkins-gitbucket
+  become: yes
+  roles:
+     - jenkins-gitbucket
+

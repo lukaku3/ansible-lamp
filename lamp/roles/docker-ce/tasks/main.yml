@@ -17,10 +17,3 @@
     state: present
 - shell: usermod -aG docker lazyarea
 - shell: systemctl start docker
-- shell ls /usr/local/bin/docker-compose > /dev/null 2>&1
-  register: docker_compose
-  ignore_errors: True
-- shell:  curl -L https://github.com/docker/compose/releases/download/1.25.4/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
-  when: docker_compose is false
-- shell:  chmod +x /usr/local/bin/docker-compose
-  when: docker_compose is false
