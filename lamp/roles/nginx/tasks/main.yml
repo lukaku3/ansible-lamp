@@ -6,12 +6,16 @@
     name:
      - httpd
     state: absent
+  ignore_errors: True
+- name: detect distoribute versiojn
+  shell: awk -F' ' {'print $4'} /etc/redhat-release | sed -r 's/(\.([0-9]+))+//'
+  register: result
 - shell: 
     cmd: |
         cat > /etc/yum.repos.d/nginx.repo << NGINX
         [nginx]
         name=nginx repo
-        baseurl=http://nginx.org/packages/centos/7/\$basearch/
+        baseurl=http://nginx.org/packages/centos/"{{ result.stdout }}"/\$basearch/
         gpgcheck=0
         enabled=1
         NGINX
