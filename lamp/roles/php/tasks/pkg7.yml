@@ -4,7 +4,6 @@
   yum:
     name:
       - php
-      - httpd
     state: absent
 - shell: curl -O -L http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
 - shell: yum localinstall -y remi-release-7.rpm
@@ -31,10 +30,6 @@
       - php-mysql
       - php-xml
       - php-curl
-      - vim
-      - tree
-      - net-tools
-      - bind-utils
     state: present
     enablerepo: "epel,remi-php72"
 - shell: setenforce 0
